@@ -2,9 +2,14 @@ import axios from "axios";
 
 const Courses = {
   basePath: "./data/courses.json",
-  async index() {
+  async index(category) {
     const { data } = await axios.get(this.basePath);
-    return data;
+    if(category){
+      const results = data.filter(course => course.category === category);
+      return results;
+    } else {
+      return data;
+    }
   }
 };
 
