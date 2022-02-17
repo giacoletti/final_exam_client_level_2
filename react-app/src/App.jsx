@@ -1,10 +1,30 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import CourseSections from "./components/CourseSections";
+import CoursesView from "./components/CoursesView";
+import Courses from "./modules/Courses";
 
 const App = () => {
-  return (
-    <> 
-    </>
-  )
-}
+  const dispatch = useDispatch();
 
-export default App
+  const fetchCourses = async () => {
+    const response = await Courses.index();
+    dispatch({ type: "SET_COURSES_LIST", payload: response });
+  };
+
+  useEffect(() => {
+    fetchCourses();
+  }, []);
+
+  return (
+    <div className="container">
+      <h1 data-cy="course-list-header" className="center">
+        COURSE LIST
+      </h1>
+      <CourseSections />
+      <CoursesView />
+    </div>
+  );
+};
+
+export default App;
