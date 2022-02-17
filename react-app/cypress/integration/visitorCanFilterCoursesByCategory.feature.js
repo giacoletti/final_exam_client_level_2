@@ -338,4 +338,123 @@ describe("A visitor can filter the courses", () => {
       cy.get("[data-cy=course-section-7]").should("not.exist");
     });
   });
+
+  describe("by clicking at COURSE LIST main header", () => {
+    before(() => {
+      cy.get("[data-cy=course-list-header]").click();
+    });
+
+    it("is expected to display Work the Web course section", () => {
+      cy.get("[data-cy=course-section-1]").within(() => {
+        cy
+          .get("[data-cy=course-header-1]")
+          .should("contain.text", "Work The Web");
+        cy.get("[data-cy=course-description-1]").should("be.visible");
+        cy
+          .get("[data-cy=course-category-1]")
+          .should("contain.text", "Category: workshops");
+        cy
+          .get("[data-cy=course-instructors-1]")
+          .should(
+            "contain.text",
+            "Instructors: Thomas Ochman, Emma-Maria Thalén"
+          );
+        cy.get("[data-cy=course-info-1]").should("be.visible");
+        cy
+          .get("[data-cy=course-price-1]")
+          .should(
+            "contain.text",
+            "Price: From 1 000 SEK - €100 (Contact us for details)"
+          );
+      });
+    });
+
+    it("is expected to display Test Automation using Cypress course section", () => {
+      cy.get("[data-cy=course-section-2]").within(() => {
+        cy
+          .get("[data-cy=course-header-2]")
+          .should("contain.text", "Test Automation using Cypress");
+        cy.get("[data-cy=course-description-2]").should("be.visible");
+        cy
+          .get("[data-cy=course-category-2]")
+          .should("contain.text", "Category: testing");
+        cy
+          .get("[data-cy=course-instructors-2]")
+          .should(
+            "contain.text",
+            "Instructors: Thomas Ochman, Emma-Maria Thalén"
+          );
+        cy.get("[data-cy=course-info-2]").should("be.visible");
+        cy
+          .get("[data-cy=course-price-2]")
+          .should("contain.text", "Price: 24 500 SEK - €2.450");
+      });
+    });
+
+    it("is expected to display Introduction to Vue3 course section", () => {
+      cy.get("[data-cy=course-section-3]").within(() => {
+        cy
+          .get("[data-cy=course-header-3]")
+          .should("contain.text", "Introduction to VUE3");
+        cy.get("[data-cy=course-description-3]").should("be.visible");
+        cy
+          .get("[data-cy=course-category-3]")
+          .should("contain.text", "Category: vue");
+        cy
+          .get("[data-cy=course-instructors-3]")
+          .should(
+            "contain.text",
+            "Instructors: Simon Wikstrand, Thomas Ochman"
+          );
+        cy.get("[data-cy=course-info-3]").should("be.visible");
+        cy
+          .get("[data-cy=course-price-3]")
+          .should("contain.text", "13 000 SEK - €1.300");
+      });
+    });
+
+    it("is expected to display Building Web Applications using VUE 3 course section", () => {
+      cy.get("[data-cy=course-section-4]").within(() => {
+        cy
+          .get("[data-cy=course-header-4]")
+          .should("contain.text", "Building Web Applications using VUE 3");
+        cy.get("[data-cy=course-description-4]").should("be.visible");
+        cy
+          .get("[data-cy=course-category-4]")
+          .should("contain.text", "Category: vue");
+        cy
+          .get("[data-cy=course-instructors-4]")
+          .should(
+            "contain.text",
+            "Instructors: Simon Wikstrand, Thomas Ochman"
+          );
+        cy.get("[data-cy=course-info-4]").should("be.visible");
+        cy
+          .get("[data-cy=course-price-4]")
+          .should("contain.text", "24 500 SEK - €2.450");
+      });
+    });
+
+    it("is expected to display ReactJs - Getting Started (2020 edition) course section", () => {
+      cy.get("[data-cy=course-section-7]").within(() => {
+        cy
+          .get("[data-cy=course-header-7]")
+          .should("contain.text", "ReactJs - Getting Started (2020 edition)");
+        cy.get("[data-cy=course-description-7]").should("be.visible");
+        cy
+          .get("[data-cy=course-category-7]")
+          .should("contain.text", "Category: react");
+        cy
+          .get("[data-cy=course-instructors-7]")
+          .should(
+            "contain.text",
+            "Instructors: Thomas Ochman."
+          );
+        cy.get("[data-cy=course-info-7]").should("be.visible");
+        cy
+          .get("[data-cy=course-price-7]")
+          .should("contain.text", "24 500 SEK - €2.450");
+      });
+    });
+  });
 });
