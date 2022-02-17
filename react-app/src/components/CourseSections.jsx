@@ -25,19 +25,19 @@ const CourseSections = () => {
       >
         Workshops
       </li>
-      <li data-cy="testing-subheader" className="bold">
+      <li data-cy="testing-subheader" className="bold" onClick={filterCourses}>
         Testing
       </li>
-      <li data-cy="vue-subheader" className="bold">
+      <li data-cy="vue-subheader" className="bold" onClick={filterCourses}>
         Vue
       </li>
-      <li data-cy="productivity-subheader" className="bold">
+      <li data-cy="productivity-subheader" className="bold" onClick={filterCourses}>
         Productivity
       </li>
-      <li data-cy="node-subheader" className="bold">
+      <li data-cy="node-subheader" className="bold" onClick={filterCourses}>
         Node
       </li>
-      <li data-cy="react-subheader" className="bold">
+      <li data-cy="react-subheader" className="bold" onClick={filterCourses}>
         React
       </li>
     </ul>
