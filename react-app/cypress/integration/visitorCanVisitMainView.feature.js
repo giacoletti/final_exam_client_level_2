@@ -1,13 +1,19 @@
 describe("A visitor visiting the application", () => {
   before(() => {
-    cy.intercept("GET", "./data/courses.json", {
-      fixture: "coursesIndexResponse.json"
-    }).as("coursesList");
+    cy
+      .intercept("GET", "**/data/courses.json", {
+        fixture: "coursesIndexResponse.json"
+      })
+      .as("coursesList");
     cy.visit("/");
   });
 
-  it.only('is expected to receive a collection of x courses', () => {
-    cy.wait("@coursesList").its("response.body").should("be.an", "array");
+  it("is expected to receive a collection of x courses", () => {
+    cy
+      .wait("@coursesList")
+      .its("response.body")
+      .should("be.an", "array")
+      .and("have.length", 7);
   });
 
   it("is expected to see main header", () => {
@@ -46,25 +52,25 @@ describe("A visitor visiting the application", () => {
     });
   });
 
-  describe("can see all the courses available", () => {
+  describe("can see first 2 courses available", () => {
     it("is expected to see Work the Web course section", () => {
-      cy.get("[data-cy=worktheweb-section]").within(() => {
+      cy.get("[data-cy=course-section-1]").within(() => {
         cy
-          .get("[data-cy=worktheweb-header]")
-          .should("contain.text", "WORK THE WEB");
-        cy.get("[data-cy=worktheweb-description]").should("be.visible");
+          .get("[data-cy=course-header-1]")
+          .should("contain.text", "Work The Web");
+        cy.get("[data-cy=course-description-1]").should("be.visible");
         cy
-          .get("[data-cy=worktheweb-category]")
-          .should("contain.text", "Category: Workshops");
+          .get("[data-cy=course-category-1]")
+          .should("contain.text", "Category: workshops");
         cy
-          .get("[data-cy=worktheweb-instructors]")
+          .get("[data-cy=course-instructors-1]")
           .should(
             "contain.text",
             "Instructors: Thomas Ochman, Emma-Maria Thalén"
           );
-        cy.get("[data-cy=worktheweb-info]").should("be.visible");
+        cy.get("[data-cy=course-info-1]").should("be.visible");
         cy
-          .get("[data-cy=worktheweb-price]")
+          .get("[data-cy=course-price-1]")
           .should(
             "contain.text",
             "Price: From 1 000 SEK - €100 (Contact us for details)"
@@ -72,6 +78,29 @@ describe("A visitor visiting the application", () => {
       });
     });
 
-    // it("", () => {});
+    it("is expected to see Test Automation course section", () => {
+      cy.get("[data-cy=course-section-2]").within(() => {
+        cy
+          .get("[data-cy=course-header-2]")
+          .should("contain.text", "Test Automation using Cypress");
+        cy.get("[data-cy=course-description-2]").should("be.visible");
+        cy
+          .get("[data-cy=course-category-2]")
+          .should("contain.text", "Category: testing");
+        cy
+          .get("[data-cy=course-instructors-2]")
+          .should(
+            "contain.text",
+            "Instructors: Thomas Ochman, Emma-Maria Thalén"
+          );
+        cy.get("[data-cy=course-info-2]").should("be.visible");
+        cy
+          .get("[data-cy=course-price-2]")
+          .should(
+            "contain.text",
+            "Price: 24 500 SEK - €2.450"
+          );
+      });
+    });
   });
 });
