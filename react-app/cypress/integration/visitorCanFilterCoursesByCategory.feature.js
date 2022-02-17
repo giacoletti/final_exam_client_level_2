@@ -435,6 +435,50 @@ describe("A visitor can filter the courses", () => {
       });
     });
 
+    it("is expected to display Version Control with Git course section", () => {
+      cy.get("[data-cy=course-section-5]").within(() => {
+        cy
+          .get("[data-cy=course-header-5]")
+          .should("contain.text", "Version Control with Git");
+        cy.get("[data-cy=course-description-5]").should("be.visible");
+        cy
+          .get("[data-cy=course-category-5]")
+          .should("contain.text", "Category: productivity");
+        cy
+          .get("[data-cy=course-instructors-5]")
+          .should(
+            "contain.text",
+            "Instructors: Thomas Ochman, Emma-Maria Thalén."
+          );
+        cy.get("[data-cy=course-info-5]").should("be.visible");
+        cy
+          .get("[data-cy=course-price-5]")
+          .should("contain.text", "24 500 SEK - €2.450");
+      });
+    });
+
+    it("is expected to display API development with NodeJS course section", () => {
+      cy.get("[data-cy=course-section-6]").within(() => {
+        cy
+          .get("[data-cy=course-header-6]")
+          .should("contain.text", "API development with NodeJS");
+        cy.get("[data-cy=course-description-6]").should("be.visible");
+        cy
+          .get("[data-cy=course-category-6]")
+          .should("contain.text", "Category: node");
+        cy
+          .get("[data-cy=course-instructors-6]")
+          .should(
+            "contain.text",
+            "Instructors: Thomas Ochman"
+          );
+        cy.get("[data-cy=course-info-6]").should("be.visible");
+        cy
+          .get("[data-cy=course-price-6]")
+          .should("contain.text", "35 500 SEK - €3.500");
+      });
+    });
+
     it("is expected to display ReactJs - Getting Started (2020 edition) course section", () => {
       cy.get("[data-cy=course-section-7]").within(() => {
         cy
