@@ -19,7 +19,7 @@ const App = () => {
   return (
     <div className="container">
       <h1 data-cy="course-list-header" className="center" onClick={fetchCourses}>
-        COURSE LIST
+        <span>COURSE LIST</span>
       </h1>
       <CourseSections />
       <CoursesView />
